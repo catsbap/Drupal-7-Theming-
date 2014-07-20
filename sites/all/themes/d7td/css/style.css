@@ -37,3 +37,8 @@ body {
 #postscript table tr {
 	background: transparent;
 }
+
+/*just seeing this in action*/
+.custom-body-summary {
+	border:1px solid green;
+}

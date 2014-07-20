@@ -1,8 +1,8 @@
 
-CONTENTS OF THIS FILEs
+CONTENTS OF THIS FILE
 ---------------------
 
- * About Drupala
+ * About Drupal
  * Configuration and features
  * Installation profiles
  * Appearance
