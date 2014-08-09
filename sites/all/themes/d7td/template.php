@@ -57,6 +57,15 @@ function d7td_preprocess_node(&$variables) {
     	$variables['display_submitted'] = TRUE;
 		$variables['submitted'] = t('Blasted out by !username on !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
 	}
+	
+		if (!empty($variables['preprocess_fields']) && in_array('comment_info', $variables['preprocess_fields'])) {
+			$comment_user = user_load($variables['last_comment_uid']);
+			$comment_username = theme('username', array('$account' => $comment_user));
+			$variables['comment_info'] = t('Comment Count: @count, Last Comment By: !commenter', array('@count'=>$variables['comment_count'], '!commenter' => $comment_username));
+		}
+		
+		//var_dump($variables);
+		//exit;
 }
 
 function d7td_preprocess_html(&$variables) {
@@ -64,11 +73,13 @@ function d7td_preprocess_html(&$variables) {
 		drupal_add_css(drupal_get_path('theme', 'd7td') . '/css/superadmin.css');
 		//drupal_add_js()
 	}
+	
+
 }
 
 //this is from the drupal docs to hook into hook_form_alter
 //called after every form in the system
-function d7td_form_alter(&$form, &$form_state, $form_id) {
+/*function d7td_form_alter(&$form, &$form_state, $form_id) {
 	if (!empty($form['#node_edit_form'])) {
 		unset($form['additional_settings']);
 		$form['options']['#collapsed'] = FALSE;
@@ -103,4 +114,5 @@ function d7td_preprocess_node_form(&$variables) {
 	$variables['left_side'] = drupal_render_children($variables['form']);
 	drupal_add_css(drupal_get_path('theme', 'd7td') . '/css/node-form.css');
 }
+*/
 ?>
